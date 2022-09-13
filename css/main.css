@@ -7,6 +7,9 @@
     --black: #141414;
     --index: calc(1vw + 1vh);
     --transition: 1.25s cubic-bezier(.2, .5, 0, 1);
+    --transition-cursor: 2s cubic-bezier(.05, .5, 0, 1);
+    --move-x: 0;
+    --move-y: 0;
 }
 @font-face {
     font-family: arsenal_f, sans-serif;
@@ -30,6 +33,9 @@ body{
     border-bottom: 1px solid ;
     counter-increment: my-counter;
 }
+.magic-list_item:first-child{
+    border-top: 1.5px solid var(--black);
+}
 .magic-list_header{
     width: min-content;
     transition: transform var(--transition);
@@ -48,4 +54,36 @@ body{
 .magic-list_item:hover .magic-list_header,
 .magic-list_item:hover::before{
     transform: translate3d(calc(var(--index) * -5), 0, 0);
+}
+.cursor{
+    --width: calc(var(--index) * 22);
+    --height: calc(var(--index) * 14);
+    position: fixed;
+    width: var(--width);
+    height: 0;
+    top: calc(var(--height) * -.5);
+    left: calc(var(--width) * -.5);
+    overflow: hidden;
+    transform: translate3d(var(--move-x), var(--move-y), 0);
+    transition: transform var(--transition-cursor), height 1s ease;
+    z-index: -1;
+    will-change: transform;
+}
+.cursor_image{
+    --cursor-transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0);
+    position: relative;
+    width: calc(var(--width) * 2);
+    height: calc(var(--height) * 2);
+    top: calc(var(--height) * -.4);
+    left: calc(var(--width) * -.25);
+    background-size: cover;
+    background-position: center;
+    transform: var(--cursor-transform) scale(1.5);
+    transition: transform var(--transition-cursor);
+}
+.magic-list_item:hover .cursor{
+    height: var(--height);
+}
+.magic-list_item:hover .cursor-image{
+    transform: scale(1);
 }
