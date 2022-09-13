@@ -6,3 +6,4 @@ using simple CSS variables and mathematical operations on them,
 very much of the logic, 
 very much of the functional component of this amazing example falls on CSS.
 
+[Recommended tools](https://tools.webdevpuneet.com/css-easing-generator/)
