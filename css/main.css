@@ -6,6 +6,7 @@
 :root{
     --black: #141414;
     --index: calc(1vw + 1vh);
+    --transition: 1.25s cubic-bezier(.2, .5, 0, 1);
 }
 @font-face {
     font-family: arsenal_f, sans-serif;
@@ -20,7 +21,7 @@ body{
     padding: calc(var(--index) * 2.75);
 }
 .magic-list_item{
-    /*cursor: none;*/
+    cursor: none;
     color: var(--black);
     text-decoration: none;
     display: block;
@@ -31,6 +32,7 @@ body{
 }
 .magic-list_header{
     width: min-content;
+    transition: transform var(--transition);
 }
 .magic-list_item::before{
     content: '(0'counter(my-counter)')';
@@ -40,4 +42,10 @@ body{
     margin-top: calc(var(--index) / 2);
     letter-spacing: .5px;
     color: #5e5d5d;
+    transition: transform var(--transition);
+    transition-delay: .025s;
+}
+.magic-list_item:hover .magic-list_header,
+.magic-list_item:hover::before{
+    transform: translate3d(calc(var(--index) * -5), 0, 0);
 }
